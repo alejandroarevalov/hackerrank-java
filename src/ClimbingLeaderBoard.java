@@ -1,40 +1,19 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ClimbingLeaderBoardNOTFINISHED {
-
-    public static List<Integer> climbingLeaderboardTimeLimitExceed(List<Integer> ranked, List<Integer> player) {
-        List<Integer> results = new LinkedList<>();
-        Set<Integer> rankedNoRepetitions = new HashSet<>(ranked);
-        List<Integer> orderedRanks = rankedNoRepetitions.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
-        for (int i = 0; i < player.size(); i++) {
-            for (int j = orderedRanks.size(); j < orderedRanks.size(); j++) {
-                if (player.get(i).intValue() > orderedRanks.get(j).intValue()) {
-                    orderedRanks.add(j, player.get(i));
-                    results.add(j+1);
-                    break;
-                } else if (player.get(i).intValue() == orderedRanks.get(j).intValue()) {
-                    results.add(j+1);
-                    break;
-                } else if (j == orderedRanks.size() - 1) {
-                    orderedRanks.add(j+1, player.get(i));
-                    results.add(j+2);
-                    break;
-                }
-            }
-        }
-
-        return results;
-    }
+public class ClimbingLeaderBoard {
 
     public static List<Integer> climbingLeaderboard(List<Integer> ranked, List<Integer> player) {
         List<Integer> results = new LinkedList<>();
         Set<Integer> rankedNoRepetitions = new HashSet<>(ranked);
         List<Integer> orderedRanks = rankedNoRepetitions.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
         for (int i = 0; i < player.size(); i++) {
-            int pivot = orderedRanks.size() / 2;
-            if (orderedRanks.get(pivot) < player.get(i)){
-
+            int x = Collections.binarySearch(orderedRanks, player.get(i), Comparator.reverseOrder());
+            if (x < 0) {
+                orderedRanks.add((x+1)*-1, player.get(i));
+                results.add((x+1)*-1 + 1);
+            } else {
+                results.add(x + 1);
             }
         }
 
@@ -48,7 +27,8 @@ public class ClimbingLeaderBoardNOTFINISHED {
 
         List<Integer> ranked = Arrays.asList(100, 90, 90, 80, 75, 60);
         List<Integer> player = Arrays.asList(50, 65, 77, 90, 102);
-        System.out.println(climbingLeaderboardTimeLimitExceed(ranked, player));
+        System.out.println(climbingLeaderboard(ranked, player));
+
         ranked = Arrays.asList(295, 294, 291, 287, 287, 285, 285, 284, 283, 279, 277, 274, 274, 271, 270, 268, 268, 268,
                 264, 260, 259, 258, 257, 255, 252, 250, 244, 241, 240, 237, 236, 236, 231, 227, 227, 227, 226, 225, 224,
                 223, 216, 212, 200, 197, 196, 194, 193, 189, 188, 187, 183, 182, 178, 177, 173, 171, 169, 165, 143, 140,
@@ -64,6 +44,7 @@ public class ClimbingLeaderBoardNOTFINISHED {
                 287, 289, 289, 295, 296, 298, 300, 300, 301, 304, 306, 308, 309, 310, 316, 318, 318, 324, 326, 329, 329,
                 329, 330, 330, 332, 337, 337, 341, 341, 349, 351, 351, 354, 356, 357, 366, 369, 377, 379, 380, 382, 391,
                 391, 394, 396, 396, 400);
-        System.out.println(climbingLeaderboardTimeLimitExceed(ranked, player));
+        System.out.println(climbingLeaderboard(ranked, player));
+
     }
 }
