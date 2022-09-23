@@ -1,3 +1,5 @@
+package various;
+
 public class SaveThePrisoner {
 
     static int saveThePrisoner(int n, int m, int s ) {

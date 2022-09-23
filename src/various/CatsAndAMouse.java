@@ -1,3 +1,5 @@
+package various;
+
 public class CatsAndAMouse {
 
     static String catAndMouse(int x, int y, int z) {

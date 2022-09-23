@@ -1,3 +1,5 @@
+package various;
+
 import java.util.Arrays;
 
 public class AngryProfessor {

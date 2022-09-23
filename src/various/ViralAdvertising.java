@@ -1,3 +1,5 @@
+package various;
+
 public class ViralAdvertising {
 
     static int viralAdvertising(int n) {
