@@ -13,7 +13,6 @@ public class ChocolateFeast {
             wrappers = wrappers % m;
             chocolates = chocolates + wrappersForChocolate;
             wrappers += wrappersForChocolate;
-
         }
         return chocolates;
     }
