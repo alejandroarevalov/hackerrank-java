@@ -8,7 +8,7 @@ public class SherlockAndDivisors {
 
     // Time limit Exceeded
     @Deprecated
-    public static int divisorsConurrent(int n) {
+    public static int divisorsConcurrent(int n) {
         AtomicInteger divisorsCount = new AtomicInteger(0);
         IntStream.range(1, n + 1).forEach(divisor -> {
             if (n % divisor == 0 && divisor % 2 == 0) {
